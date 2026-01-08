@@ -60,9 +60,11 @@ An AI-powered web application that automatically generates concise summaries of 
    ```
 
 2. **Run the container**
+   Use docker desktop, extensions to run the container  or type : 
    ```bash
    docker run -p 8501:8501 --env OPENAI_API_KEY=your_api_key_here yt-summarizer
    ```
+
 
 3. **Access the application**
    
@@ -99,14 +101,6 @@ Yt_video_summarizer/
 └── README.md             # This file
 ```
 
-## 🛠️ Technology Stack
-
-- **Python 3.9.7** - Core programming language
-- **Streamlit** - Web UI framework
-- **youtube-transcript-api** - Transcript retrieval
-- **OpenAI API (GPT-4o mini)** - AI summarization
-- **Docker** - Containerization
-
 ## ⚠️ Limitations
 
 - Only works with videos that have transcripts enabled
@@ -115,30 +109,14 @@ Yt_video_summarizer/
 - Very long videos may take longer to process
 - No persistent storage of summaries
 
-## 🔮 Future Improvements
-
-- Support for more languages
-- Custom summary styles (TL;DR, action items, chapters)
-- Chunking for very long videos
-- Summary caching
-- Improved UI with expandable sections
-- Automatic language detection
-
-## 📝 License
-
-This is a personal learning project. Feel free to use and modify as needed.
-
-## 🤝 Contributing
-
-This is an MVP for learning purposes. Suggestions and improvements are welcome!
-
 ## 📧 Support
 
-For issues or questions, please check that:
+For issues please check that:
 - Your OpenAI API key is valid and has credits
 - The YouTube video has transcripts enabled
 - Your URL format is supported
 
 ---
 
-**Built with ❤️ for learning and productivity**
+**Made by Xahoris**
+
