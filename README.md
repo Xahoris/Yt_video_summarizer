@@ -96,7 +96,6 @@ Yt_video_summarizer/
 │   └── prompts.py         # LLM prompt templates
 ├── requirements.txt       # Python dependencies
 ├── Dockerfile            # Docker configuration
-├── .env                  # Environment variables (not in git)
 ├── .env.example          # Environment variables template
 └── README.md             # This file
 ```
