@@ -5,7 +5,6 @@ Extracts video IDs and retrieves transcripts.
 import re
 from typing import Optional
 from youtube_transcript_api import YouTubeTranscriptApi
-from youtube_transcript_api._errors import TranscriptsDisabled, NoTranscriptFound
 
 
 def extract_video_id(url: str) -> Optional[str]:
@@ -37,8 +36,7 @@ def extract_video_id(url: str) -> Optional[str]:
     
     return None
 
-
-def get_transcript(video_id: str, languages: list = ['en', 'fr']) -> str:
+def get_transcript(video_id: str) -> str:
     """
     Retrieve transcript for a YouTube video.
     
@@ -48,25 +46,27 @@ def get_transcript(video_id: str, languages: list = ['en', 'fr']) -> str:
         
     Returns:
         Full transcript as a single string
-        
-    Raises:
-        TranscriptsDisabled: When transcripts are disabled for the video
-        NoTranscriptFound: When no transcript is available in specified languages
-        Exception: For other errors during transcript retrieval
-    """
+
+"""
+    #create instance of YouTubeTranscriptApi
+    ytt_api = YouTubeTranscriptApi()
+    transcript_list = ytt_api.list(video_id)
+
+    # try fetching french 
     try:
-        transcript_list = YouTubeTranscriptApi.get_transcript(
-            video_id, 
-            languages=languages
-        )
+        transcript = transcript_list.find_transcript(['fr'])
+    except:
+        print("No French transcript available")
+    
+    # try fetching english 
+    try:
+        transcript = transcript_list.find_transcript(['en'])
+    except:
+        print("No English transcript available")
         
-        # Combine all transcript segments into one string
-        full_transcript = ' '.join([entry['text'] for entry in transcript_list])
-        return full_transcript
+    # Combine all transcript segments into one string
+    transcript = transcript.fetch()
+    transcript = transcript.to_raw_data()
+    full_transcript = ' '.join([item['text'] for item in transcript])
+    return full_transcript
         
-    except TranscriptsDisabled:
-        raise Exception(f"Transcripts are disabled for video {video_id}")
-    except NoTranscriptFound:
-        raise Exception(f"No transcript found in languages {languages} for video {video_id}")
-    except Exception as e:
-        raise Exception(f"Error retrieving transcript: {str(e)}")
