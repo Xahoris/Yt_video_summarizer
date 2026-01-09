@@ -115,6 +115,10 @@ For issues please check that:
 - The YouTube video has transcripts enabled
 - Your URL format is supported
 
+##  Miscs
+
+Your can put your own prompt insite the prompts.py file 
+
 ---
 
 **Made by Xahoris**
